@@ -25,3 +25,21 @@ export async function run(): Promise<void> {
     if (error instanceof Error) core.setFailed(error.message)
   }
 }
+
+// X FAILS PRETTIER Check
+export const calculatetotal =(price:number, tax:number)=>
+{
+    const total=price * tax
+    return 'Total price is: ' +total
+}
+
+// X FAILS ESLINT Check
+export const getUserData = (userId: any) => {
+  const secretToken = "12345";
+
+  let username = "Alex";
+
+  return {
+    id: userId
+  };
+};
