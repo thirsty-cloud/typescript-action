@@ -2,7 +2,7 @@ name: Demo CICD Multi-Stage Deployment
 
 on:
   workflow_run:
-    workflows: ["ci.yml"]
+    workflows: ["pipelinetest-ci.yml"]
     types:
       - completed
 
