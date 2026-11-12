@@ -7,24 +7,30 @@ on:
         required: true
         type: string
         description: "The targeted GitHub environment name (e.g., dev, uat, prod)"
- 
+      runid:
+        required: true
+        type: string
+        description: "runid input"
 permissions:
   contents: read
+  actions: read
  
 jobs:
   deploy:
     name: Deploy to ${{ inputs.environment-name }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment-name }}
-    # if: |
-    #   github.ref == 'refs/heads/main' &&
-    #   github.event.workflow_run.conclusion == 'success'
+    if: |
+       github.ref == 'refs/heads/main' &&
+       github.event.workflow_run.conclusion == 'success'
  
     steps:
       - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:
           name: node-app
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ inputs.run-id }}
  
       - name: Verify Build Artifact
         run: test -f dist/index.js
