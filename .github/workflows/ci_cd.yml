@@ -7,43 +7,46 @@ on:
 permissions:
   id-token: write # 🌟 Required for requesting the JWT OIDC token
   contents: read  # 🌟 Required for actions/checkout
+  actions: read
 jobs:
   # Call your completely separate existing CI file
-  ci:
-    uses: ./.github/workflows/mattstorer_ci.yml
-
+#  ci:
+ #   uses: ./.github/workflows/demo-ci.yml
+ 
   # =========================================================================
   # DEPLOY TO DEV (REUSING TEMPLATE)
   # =========================================================================
   deploy-dev:
     name: Dev Stage
-    needs: ci
+  #  needs: ci    
     uses: ./.github/workflows/deploy-template.yml
     with:
-      environment-name: 'dev'
+      environment-name: 'dev' 
+      runid: ${{ github.event.workflow_run.id }}
     # 🌟 Explicitly maps the secret permission layer to the template
     secrets: inherit
-
+ 
   # =========================================================================
   # DEPLOY TO UAT (REUSING TEMPLATE)
   # =========================================================================
   deploy-uat:
     name: UAT Stage
-    needs: deploy-dev
+    needs: deploy-dev     
     uses: ./.github/workflows/deploy-template.yml
     with:
       environment-name: 'uat'
+      runid: ${{ github.event.workflow_run.id }}
     # 🌟 Explicitly maps the secret permission layer to the template
-    secrets: inherit
+    secrets: inherit 
   # =========================================================================
   # DEPLOY TO PROD (REUSING TEMPLATE)
   # =========================================================================
   deploy-prod:
     name: Prod Stage
-    needs: deploy-uat
+    needs: deploy-uat   
     uses: ./.github/workflows/deploy-template.yml
     with:
-      environment-name: 'prod'
+      environment-name: 'prod'  
+      runid: ${{ github.event.workflow_run.id }}
     # 🌟 Explicitly maps the secret permission layer to the template
     secrets: inherit
- 
