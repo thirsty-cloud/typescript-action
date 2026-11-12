@@ -10,7 +10,7 @@ permissions:
 jobs:
   # Call your completely separate existing CI file
   ci:
-    uses: ./.github/workflows/mattstorer-ci.yml
+    uses: ./.github/workflows/mattstorer_ci.yml
 
   # =========================================================================
   # DEPLOY TO DEV (REUSING TEMPLATE)
