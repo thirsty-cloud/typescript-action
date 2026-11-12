@@ -30,7 +30,7 @@ jobs:
         with:
           name: node-app
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ inputs.run-id }}
+          runid: ${{ inputs.runid }}
  
       - name: Verify Build Artifact
         run: test -f dist/index.js
