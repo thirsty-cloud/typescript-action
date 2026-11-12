@@ -52,4 +52,3 @@ jobs:
               pm2 restart my-ts-app || pm2 start dist/index.js --name my-ts-app;
               pm2 save
             "
-
