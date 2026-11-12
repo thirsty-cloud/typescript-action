@@ -49,7 +49,7 @@ jobs:
           password: ${{ secrets.VM_PASSWORD }}
           script: |
             powershell -Command "
-              cd C:\apps\my-ts-app-100;
+              cd C:\apps\matthew_s;
               npm ci --omit=dev;
               pm2 restart my-ts-app || pm2 start dist/index.js --name my-ts-app;
               pm2 save
