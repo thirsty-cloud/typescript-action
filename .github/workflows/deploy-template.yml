@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.VM_USER }}
           password: ${{ secrets.VM_PASSWORD }}
           source: "dist/**,package.json,package-lock.json"
-          target: "C:/apps/my-ts-app-100"
+          target: "C:/apps/matthew_s"
  
       # 3. Install production-only dependencies on the VM and restart PM2
       - name: Install prod dependencies and restart PM2 via SSH
