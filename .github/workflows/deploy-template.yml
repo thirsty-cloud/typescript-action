@@ -46,7 +46,7 @@ jobs:
  
       # 3. Install production-only dependencies on the VM and restart PM2
       - name: Install prod dependencies and restart PM2 via SSH
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
